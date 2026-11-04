@@ -10,5 +10,5 @@ if php bin/console doctrine:query:sql "SELECT id FROM users LIMIT 1" >/dev/null 
   php bin/console cache:clear
 else
   echo "Fresh environment: running pimcore-install."
-  vendor/bin/pimcore-install --install-profile='App\Installer\SkeletonProfile' --no-interaction
+  vendor/bin/pimcore-install --install-profile='App\Installer\UpsunProfile' --no-interaction
 fi

@@ -1,0 +1,92 @@
+# Upsun configuration for the PCDD 2026 Pimcore AI Guidepost.
+# Production = main branch; every PR gets a preview environment (enable in the
+# Upsun GitHub integration). Registration env vars (PIMCORE_PRODUCT_KEY,
+# PIMCORE_INSTANCE_IDENTIFIER, PIMCORE_ENCRYPTION_SECRET, APPLICATION_SECRET)
+# are set as project variables in Upsun, never committed.
+
+applications:
+  app:
+    type: php:8.4
+    source:
+      root: "/"
+
+    runtime:
+      extensions:
+        - pdo_mysql
+        - intl
+        - gd
+        - exif
+        - zip
+        - bcmath
+        - sodium
+        - redis
+        - imagick
+        - amqp
+
+    relationships:
+      database: "db:mysql"
+      opensearch: "search:opensearch"
+      rediscache: "cache:redis"
+      rabbitmq: "queue:rabbitmq"
+
+    mounts:
+      "var":
+        source: storage
+        source_path: var
+      "public/var":
+        source: storage
+        source_path: public-var
+
+    build:
+      flavor: none
+
+    hooks:
+      build: |
+        set -e
+        composer install --no-dev --prefer-dist --no-progress --no-interaction --optimize-autoloader
+      deploy: |
+        set -e
+        bash upsun/deploy.sh
+
+    web:
+      locations:
+        "/":
+          root: "public"
+          passthru: "/index.php"
+          allow: true
+          rules:
+            "\\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$":
+              expires: 1w
+
+    workers:
+      messenger:
+        commands:
+          start: |
+            php bin/console messenger:consume --all --time-limit=300 --memory-limit=256M
+
+    crons:
+      maintenance:
+        spec: "*/15 * * * *"
+        commands:
+          start: php bin/console pimcore:maintenance
+
+services:
+  db:
+    type: mariadb:11.4
+
+  search:
+    type: opensearch:2
+
+  cache:
+    type: redis:7.2
+
+  queue:
+    type: rabbitmq:4.0
+
+routes:
+  "https://{default}/":
+    type: upstream
+    upstream: "app:http"
+  "https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"

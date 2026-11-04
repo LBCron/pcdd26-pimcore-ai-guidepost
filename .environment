@@ -1,0 +1,18 @@
+# Sourced by Upsun at runtime: maps relationship variables to what Pimcore expects.
+# Secrets (APPLICATION_SECRET, PIMCORE_PRODUCT_KEY, PIMCORE_INSTANCE_IDENTIFIER,
+# PIMCORE_ENCRYPTION_SECRET) are Upsun project variables, not set here.
+
+export APP_ENV=prod
+export APP_DEBUG=0
+export PIMCORE_DEV_MODE=false
+
+# MariaDB (relationship: database)
+export DATABASE_URL="mysql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_PATH}"
+
+# OpenSearch (relationship: opensearch)
+export PIMCORE_OPENSEARCH_DSN="opensearch://${OPENSEARCH_HOST}:${OPENSEARCH_PORT}"
+
+# RabbitMQ (relationship: rabbitmq) - Pimcore appends the transport name to this prefix
+export PIMCORE_MESSENGER_TRANSPORT_DSN_PREFIX="amqp://${RABBITMQ_USERNAME}:${RABBITMQ_PASSWORD}@${RABBITMQ_HOST}:${RABBITMQ_PORT}/%2f/"
+
+# Mercure is not deployed in this hosted variant (no Agent Bundle here yet).

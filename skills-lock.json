@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "ckeditor": {
+      "source": "ckeditor/skills",
+      "sourceType": "github",
+      "skillPath": "skills/ckeditor/SKILL.md",
+      "computedHash": "e9c7cf79bbb497ba836f6bfff2ef15dff444f48347e998abca27a899c3138118"
+    },
+    "ckeditor-bundle": {
+      "source": "ckeditor/skills",
+      "sourceType": "github",
+      "skillPath": "skills/ckeditor-bundle/SKILL.md",
+      "computedHash": "37a68afc292c439d1bb6a2f36845c308e51b23bb9ca1c14d206f1994ff5f4537"
+    },
+    "ckeditor-update": {
+      "source": "ckeditor/skills",
+      "sourceType": "github",
+      "skillPath": "skills/ckeditor-update/SKILL.md",
+      "computedHash": "1ce5f7388ec5904d521c155afd66df308447c795035caf98f28315155a5708ce"
+    }
+  }
+}

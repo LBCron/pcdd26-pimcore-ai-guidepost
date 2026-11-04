@@ -12,8 +12,18 @@
   },
   "prefer-stable": true,
   "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "packages/ckeditor-studio-bundle",
+      "options": {
+        "symlink": true
+      }
+    }
+  ],
   "require": {
     "php": "~8.4.0 || ~8.5.0",
+    "chrastina/ckeditor-studio-bundle": "@dev",
     "pimcore/pimcore": "^2026.3.0",
     "pimcore/platform-version": "^2026.3.0",
     "pimcore/quill-bundle": "*",

@@ -33,6 +33,10 @@ Agents: read this file first. Skills live in `.claude/skills/` (Claude Code) and
 - [ ] No owned distribution: official skills install by git clone + symlink (no skills.sh, no Composer, no plugin marketplace).
 - [ ] No decision log: Agent Bundle has guardrails (good!), but logs and token counters are not a queryable audit trail.
 
+## The generated podcast (proof of discoverability)
+
+`podcast/` holds a two-host audio briefing about Pimcore that an AI agent generated from the public resources this repo maps, synthesized locally with macOS `say`. See `podcast/README.md`; regenerate with `podcast/generate.sh`. If an agent cannot produce this for your product, you found your gaps.
+
 ## Reference points from other ecosystems
 
 - CKEditor: https://ckeditor.com/docs/ckeditor5/latest/getting-started/ai-coding-agents.html (markdown docs + `llms-full.txt`, hosted docs MCP, skills)

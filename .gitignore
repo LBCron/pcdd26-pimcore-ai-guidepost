@@ -61,3 +61,6 @@ nbproject
 
 # OS junk
 .DS_Store
+
+# hosted instance secrets, never commit
+/.env.upsun.local

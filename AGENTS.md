@@ -46,5 +46,7 @@ Agents: read this file first. Skills live in `.claude/skills/` (Claude Code) and
 ## Working in this repo
 
 - Standard Pimcore skeleton: `docker-compose.yaml` for services, `bin/console` for commands, `config/` for Symfony config, `src/` for code.
+- Run PHP through the container (`docker compose exec php ...`): the host PHP lacks required extensions.
+- Commits follow Conventional Commits: `type(scope): imperative summary`. Types used here: feat, fix, docs, chore, build, refactor, test. One logical change per commit; never commit `.env.local` or secrets.
 - Before writing custom code, check the decision ladder: Pimcore core -> official bundles -> community bundles -> only then custom.
 - Verify changes in the running app; never declare done without verifying.

@@ -10,7 +10,7 @@ export PIMCORE_DEV_MODE=false
 export DATABASE_URL="mysql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_PATH}"
 
 # OpenSearch (relationship: opensearch)
-export PIMCORE_OPENSEARCH_DSN="opensearch://${OPENSEARCH_HOST}:${OPENSEARCH_PORT}"
+export PIMCORE_OPENSEARCH_DSN="opensearch://${OPENSEARCH_HOST}:${OPENSEARCH_PORT}?ssl=false"
 
 # RabbitMQ (relationship: rabbitmq) - Pimcore appends the transport name to this prefix
 export PIMCORE_MESSENGER_TRANSPORT_DSN_PREFIX="amqp://${RABBITMQ_USERNAME}:${RABBITMQ_PASSWORD}@${RABBITMQ_HOST}:${RABBITMQ_PORT}/%2f/"

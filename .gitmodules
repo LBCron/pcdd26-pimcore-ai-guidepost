@@ -1,0 +1,6 @@
+[submodule "skills-vendor/pimcore-skills"]
+	path = skills-vendor/pimcore-skills
+	url = https://github.com/pimcore/skills.git
+[submodule "skills-vendor/cors-pimcore-skills"]
+	path = skills-vendor/cors-pimcore-skills
+	url = https://github.com/cors-gmbh/pimcore-skills.git

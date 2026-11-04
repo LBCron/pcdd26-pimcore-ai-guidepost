@@ -36,6 +36,9 @@ applications:
       "public/var":
         source: storage
         source_path: public-var
+      "public/bundles":
+        source: storage
+        source_path: public-bundles
 
     build:
       flavor: none

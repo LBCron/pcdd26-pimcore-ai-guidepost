@@ -56,6 +56,13 @@ final readonly class UpsunProfile implements InstallProfileInterface, InstallSte
 
     public function getSkippedInstallSteps(): array
     {
-        return [InstallStep::WriteEnv];
+        // All three write to the read-only application filesystem, and all three
+        // outputs are already committed to the repo (verified against a local
+        // install of the identical profile: the generated files matched exactly).
+        return [
+            InstallStep::WriteEnv,
+            InstallStep::WriteDoctrineConfig,
+            InstallStep::RegisterBundles,
+        ];
     }
 }

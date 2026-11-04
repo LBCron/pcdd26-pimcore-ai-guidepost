@@ -54,3 +54,10 @@ nbproject
 
 # temp
 .temp
+
+# container composer cache leaking into the project root
+/cache/
+/.htaccess
+
+# OS junk
+.DS_Store

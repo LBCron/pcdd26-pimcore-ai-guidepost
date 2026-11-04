@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 16px; color: #222; }
+        article { border-bottom: 1px solid #ddd; padding: 1.5rem 0; }
+        h1 { margin-bottom: 0.5rem; }
+        .meta { color: #777; font-size: 0.875rem; }
+        a { color: #0a5bd3; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Blog</h1>
+    <p class="meta">BlogPost data objects, content model defined in the database, rich text edited with CKEditor in Studio.</p>
+
+    {% for post in posts %}
+        <article>
+            <h2><a href="{{ path('blog_detail', { slug: post.slug }) }}">{{ post.title }}</a></h2>
+            {% if post.publishDate %}
+                <p class="meta">{{ post.publishDate.format('Y-m-d') }}</p>
+            {% endif %}
+            {% if post.teaser %}
+                <p>{{ post.teaser }}</p>
+            {% endif %}
+        </article>
+    {% else %}
+        <p>No posts yet. Run <code>bin/console ckeditor-studio:install-blog-demo</code>.</p>
+    {% endfor %}
+</body>
+</html>

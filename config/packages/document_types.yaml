@@ -1,0 +1,11 @@
+pimcore:
+    documents:
+        doc_types:
+            definitions:
+                landing_page:
+                    name: 'Landing page'
+                    group: 'Marketing'
+                    controller: 'App\Controller\LandingController::landingAction'
+                    template: 'landing/landing.html.twig'
+                    type: 'page'
+                    priority: 0

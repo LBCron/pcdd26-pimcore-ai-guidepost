@@ -1,0 +1,27 @@
+# CKEditor Studio bundle (packages/ckeditor-studio-bundle). Everything is optional.
+#
+# Committed default: both premium gates OFF, so the editor runs the open source
+# (GPL) build and fetches no premium code. To test premium locally, set in
+# .env.local (gitignored, never commit the values):
+#
+#   CKEDITOR_LICENSE_KEY=...          license key from portal.ckeditor.com
+#   CKEDITOR_CS_ENVIRONMENT_ID=...    Cloud Services environment id (token aud)
+#   CKEDITOR_CS_ACCESS_KEY=...        Cloud Services access key (signs tokens, server side)
+#   CKEDITOR_CS_WEBSOCKET_URL=...     Cloud Services WebSocket URL
+#   CKEDITOR_PREMIUM_AI=1             gate: CKEditor AI
+#   CKEDITOR_PREMIUM_RTC=1            gate: real-time collaboration
+#
+# then `bin/console cache:clear`. See the bundle README, "Testing premium locally".
+parameters:
+  env(CKEDITOR_PREMIUM_AI): '0'
+  env(CKEDITOR_PREMIUM_RTC): '0'
+
+ckeditor_studio:
+  premium:
+    ai:
+      enabled: '%env(bool:CKEDITOR_PREMIUM_AI)%'
+    realtime_collaboration:
+      enabled: '%env(bool:CKEDITOR_PREMIUM_RTC)%'
+      # token_url / web_socket_url left null: the bundle's own token endpoint
+      # (/pimcore-studio/api/ckeditor-studio/cs-token) and CKEDITOR_CS_WEBSOCKET_URL
+      # are used when the Cloud Services env vars are set.

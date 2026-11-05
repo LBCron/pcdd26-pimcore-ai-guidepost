@@ -58,6 +58,26 @@ You don't need to have a PHP environment with composer installed.
     * Pimcore Studio, using the credentials from `.env` (default `admin` / `admin`):
       <http://localhost/pimcore-studio>
 
+## CKEditor in Pimcore Studio
+
+This skeleton ships a working CKEditor integration for Pimcore Studio:
+[`packages/ckeditor-studio-bundle`](packages/ckeditor-studio-bundle/README.md)
+(namespace `Chrastina\CKEditorStudioBundle`), built as the CKEditor counterpart to
+`pimcore/quill-bundle` for the PCDD 2026 talk. It registers a module federation
+remote that overrides Studio's `wysiwyg.editor` component slot, so data object
+wysiwyg fields and document editables render CKEditor.
+
+- License key: optional. Without one the editor runs the open source feature set
+  (`licenseKey: 'GPL'`); set `CKEDITOR_LICENSE_KEY` to use a commercial key and the
+  prepared premium gates (CKEditor AI, real-time collaboration; scaffolded).
+- Toolbar: configurable via `ckeditor_studio.toolbar` yaml, with a sensible default
+  preset.
+- Because the Studio component registry has no override arbitration (last bundle
+  wins), `PimcoreQuillBundle` is disabled in `config/bundles.php`.
+
+Setup, configuration and limitations:
+[bundle README](packages/ckeditor-studio-bundle/README.md).
+
 ## Pimcore Platform Version
 By default, Pimcore Platform Version is added as a dependency which ensures installation of compatible and in combination 
 with each other tested versions of additional Pimcore modules. More information about the Platform Version can be found in the 

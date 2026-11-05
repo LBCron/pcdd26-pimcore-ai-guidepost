@@ -73,8 +73,10 @@ wysiwyg fields and document editables render CKEditor.
   when a key is configured and a gate is enabled.
 - Toolbar: configurable via `ckeditor_studio.toolbar` yaml, with a sensible default
   preset.
-- Because the Studio component registry has no override arbitration (last bundle
-  wins), `PimcoreQuillBundle` is disabled in `config/bundles.php`.
+- Editor selection: both PimcoreQuillBundle and this bundle stay enabled;
+  `ckeditor_studio.editor` (`ckeditor` | `quill` | `default`) in
+  `config/packages/ckeditor_studio.yaml` picks the editor, with CKEditor as the
+  fallback when Quill is not available.
 
 Setup, configuration and limitations:
 [bundle README](packages/ckeditor-studio-bundle/README.md).

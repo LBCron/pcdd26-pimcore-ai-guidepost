@@ -69,7 +69,8 @@ wysiwyg fields and document editables render CKEditor.
 
 - License key: optional. Without one the editor runs the open source feature set
   (`licenseKey: 'GPL'`); set `CKEDITOR_LICENSE_KEY` to use a commercial key and the
-  prepared premium gates (CKEditor AI, real-time collaboration; scaffolded).
+  premium gates (CKEditor AI, real-time collaboration), loaded on demand only
+  when a key is configured and a gate is enabled.
 - Toolbar: configurable via `ckeditor_studio.toolbar` yaml, with a sensible default
   preset.
 - Because the Studio component registry has no override arbitration (last bundle

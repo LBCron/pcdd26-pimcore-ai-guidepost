@@ -121,6 +121,27 @@ npm run dev-server   # port 3033; Studio discovers it automatically
 
 Do not run builds while a dev server for this package is running.
 
+## 10. Runtime configuration (license key, toolbar)
+
+Verified 2026-11-05 on the running stack:
+
+```bash
+docker compose exec php bin/console cache:clear
+curl -sL http://localhost/pimcore-studio/ | grep -o 'data-app-config="[^"]*"'
+# expected: ..."ckeditorStudio":{"licenseKey":null,"toolbar":[...],"premium":{...}}...
+
+docker compose exec php bin/console debug:container --env-var=CKEDITOR_LICENSE_KEY
+# expected: default "" (no key -> editor uses licenseKey 'GPL')
+```
+
+To test the gating with a key: set `CKEDITOR_LICENSE_KEY` in `.env.local`,
+`cache:clear`, reload Studio, and check the editor console for license errors.
+To test a toolbar preset: set `ckeditor_studio.toolbar` in
+`config/packages/ckeditor_studio.yaml`, `cache:clear`, reload Studio. The premium
+path (trial key, token endpoint, CKEditor AI chat round trip, real-time collaboration
+sync between two tabs) was verified live on 2026-11-05; the walkthrough is in the
+README, "Testing premium locally".
+
 ## Out of scope / unproven
 
 - Not booted: bundle discovery, prepend config, entry point registration are
